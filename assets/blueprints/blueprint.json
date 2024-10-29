@@ -1,0 +1,27 @@
+{
+  "landingPage": "/wp-admin/",
+  "steps": [
+    {
+      "step": "enableMultisite"
+    },
+    {
+      "step": "login",
+      "username": "admin",
+      "password": "password"
+    },
+    {
+      "step": "installPlugin",
+      "pluginZipFile": {
+        "resource": "wordpress.org/plugins",
+        "slug": "admin-bar-site-id"
+      },
+      "options": {
+        "activate": false
+      }
+    },
+    {
+      "step": "runPHP",
+      "code": "<?php require '/wordpress/wp-load.php'; $arr = array( 'admin-bar-site-id/plugin.php' => time() ); update_site_option( 'active_sitewide_plugins', $arr );"
+    }
+  ]
+}
